@@ -2,10 +2,7 @@ package tech.sapnas.lottyxbe.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tech.sapnas.lottyxbe.entity.UserEntity;
 import tech.sapnas.lottyxbe.service.UserService;
 
@@ -31,5 +28,17 @@ public class UserController {
     public ResponseEntity<UserEntity> findUserById(@PathVariable Long id){
         UserEntity userEntity = userService.getUserById(id);
         return new ResponseEntity<>(userEntity, HttpStatus.OK);
+    }
+
+    @PostMapping()
+    public ResponseEntity<UserEntity> updateUser(@RequestBody UserEntity userEntity){
+        UserEntity updateUser = userService.updateUser(userEntity);
+        return new ResponseEntity<>(updateUser, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> removeUser(@PathVariable("id") Long id){
+        userService.deleteUserEntityById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
