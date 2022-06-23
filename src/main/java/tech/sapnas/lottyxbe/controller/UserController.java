@@ -30,7 +30,7 @@ public class UserController {
         return new ResponseEntity<>(userEntity, HttpStatus.OK);
     }
 
-    @PostMapping()
+    @PutMapping()
     public ResponseEntity<UserEntity> updateUser(@RequestBody UserEntity userEntity){
         UserEntity updateUser = userService.updateUser(userEntity);
         return new ResponseEntity<>(updateUser, HttpStatus.OK);
@@ -40,5 +40,11 @@ public class UserController {
     public ResponseEntity<?> removeUser(@PathVariable("id") Long id){
         userService.deleteUserEntityById(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping()
+    public ResponseEntity<UserEntity> addUser(@RequestBody UserEntity userEntity){
+        UserEntity newUserEntity = userService.addUserEntity(userEntity);
+        return new ResponseEntity<>(newUserEntity, HttpStatus.CREATED);
     }
 }
