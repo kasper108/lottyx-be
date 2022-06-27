@@ -33,4 +33,6 @@ public class UserEntity {
     @Column(name = "address_id", nullable = false)
     private String addressId;
 
+    //User
+
 }
